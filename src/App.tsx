@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Table, Input, SelectCurrency} from "components";
+import {useCurrencyData} from "hooks/useCurrencyData";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+
+    const {
+        setValue,
+        setSelectedCurrency,
+        value,
+        currencyData,
+        exchangeRates,
+    } = useCurrencyData()
+
+    const inputSetHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(Number(e.currentTarget.value))
+    }
+    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCurrency(e.target.value);
+    }
+    return (
+        <>
+            <div>
+                <Input callBack={inputSetHandler}
+                       value={value}
+                />
+                <SelectCurrency
+                    onChange={onChangeHandler}
+                    currencyData={currencyData}/>
+            </div>
+
+            <Table exchangeRates={exchangeRates}
+                   value={value}/>
+        </>
+    );
 }
-
-export default App;
