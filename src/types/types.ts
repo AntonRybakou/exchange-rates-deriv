@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 export type TablePropsType = {
-    exchangeRates: ExchangeRatesType,
-    value: number,
-}
+  exchangeRates: ExchangeRatesType;
+  value: number;
+};
 
 export type InputPropsType = {
-    callBack: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    value: number,
-}
+  callBack: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: number;
+};
 
 export type ExchangeRatesType = {
-    [key: string]: number;
-}
+  [key: string]: number;
+};

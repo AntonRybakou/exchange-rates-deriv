@@ -1,36 +1,27 @@
-import React from 'react';
-import {Table, Input, SelectCurrency} from "components";
-import {useCurrencyData} from "hooks/useCurrencyData";
+import React, { ReactElement } from 'react';
 
-export const App = () => {
+import { Table, Input, SelectCurrency } from 'components';
+import { useCurrencyData } from 'hooks/useCurrencyData';
 
-    const {
-        setValue,
-        setSelectedCurrency,
-        value,
-        currencyData,
-        exchangeRates,
-    } = useCurrencyData()
+export const App = (): ReactElement => {
+  const { setValue, setSelectedCurrency, value, currencyData, exchangeRates } =
+    useCurrencyData();
 
-    const inputSetHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(Number(e.currentTarget.value))
-    }
-    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedCurrency(e.target.value);
-    }
-    return (
-        <>
-            <div>
-                <Input callBack={inputSetHandler}
-                       value={value}
-                />
-                <SelectCurrency
-                    onChange={onChangeHandler}
-                    currencyData={currencyData}/>
-            </div>
+  const inputSetHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setValue(Number(e.currentTarget.value));
+  };
+  const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    setSelectedCurrency(e.target.value);
+  };
 
-            <Table exchangeRates={exchangeRates}
-                   value={value}/>
-        </>
-    );
-}
+  return (
+    <>
+      <div>
+        <Input callBack={inputSetHandler} value={value} />
+        <SelectCurrency onChange={onChangeHandler} currencyData={currencyData} />
+      </div>
+
+      <Table exchangeRates={exchangeRates} value={value} />
+    </>
+  );
+};
