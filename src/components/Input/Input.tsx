@@ -5,6 +5,6 @@ type InputPropsType = {
   value: number;
 };
 
-export const Input: React.FC<InputPropsType> = React.memo(({ callBack, value }) => {
+export const Input = React.memo(({ callBack, value }: InputPropsType) => {
   return <input type="number" min={0} onChange={callBack} value={value} />;
 });

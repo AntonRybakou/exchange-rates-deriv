@@ -1,10 +1,18 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ExchangeRatesType } from 'types';
 
 const ws = new WebSocket(`wss://ws.binaryws.com/websockets/v3?app_id=1089`);
 
-export const useCurrencyData = () => {
+type UseCurrencyDataType = {
+  setValue: Dispatch<SetStateAction<number>>;
+  setSelectedCurrency: Dispatch<SetStateAction<string | null>>;
+  value: number;
+  currencyData: string[];
+  exchangeRates: ExchangeRatesType;
+};
+
+export const useCurrencyData = (): UseCurrencyDataType => {
   const [currencyData, setCurrencyData] = useState<string[]>([]);
   const [value, setValue] = useState<number>(1);
   const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
